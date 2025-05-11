@@ -6,4 +6,13 @@ export default defineConfig({
       react(),
       tailwindcss()
   ],
+    server: {
+        proxy: {
+            '/ai/chat': {
+                target: 'https://my-app.yangcongzhao123.workers.dev', // 替换为你的 Cloudflare Workers 域名
+                changeOrigin: true,
+                secure: true,
+            },
+        },
+    },
 })

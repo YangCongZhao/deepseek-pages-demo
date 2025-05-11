@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import 'normalize.css'
-import './utils/flexible.js'
+// import './utils/flexible.js'
 import './index.css'
 import App from './App.tsx'
 
