@@ -27,7 +27,7 @@ const ChatComponent = () => {
         setLoading(true);
 
         try {
-            const res = await fetch('/ai/chat', {
+            const res = await fetch('https://my-app.yangcongzhao123.workers.dev/ai/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
