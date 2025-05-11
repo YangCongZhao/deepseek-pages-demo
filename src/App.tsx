@@ -1,9 +1,22 @@
 import { useState } from 'react';
+interface ChatResponse {
+    id: string;
+    choices: {
+        message: {
+            content: string;
+        };
+    }[];
+    usage: {
+        prompt_tokens: number;
+        completion_tokens: number;
+        total_tokens: number;
+    };
+}
 
 const ChatComponent = () => {
     const [prompt, setPrompt] = useState('');
     const [systemPrompt] = useState('');
-    const [response, setResponse] = useState(null);
+    const [response, setResponse] = useState<ChatResponse | null>(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
