@@ -16,7 +16,7 @@ interface ChatResponse {
 
 const ChatComponent = () => {
     const [prompt, setPrompt] = useState('');
-    const [systemPrompt] = useState('');
+    // const [systemPrompt] = useState('');
     const [response, setResponse] = useState<ChatResponse | null>(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
