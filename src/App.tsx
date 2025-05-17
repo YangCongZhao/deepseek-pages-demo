@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { MastraClient } from "@mastra/client-js";
 interface ChatResponse {
     id: string;
     choices: {
@@ -20,6 +21,20 @@ const ChatComponent = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
+
+    const client = new MastraClient({
+        // Required
+        baseUrl: "https://yc-mastra-app.yangcongzhao123.workers.dev",
+
+        // Optional configurations for development
+        retries: 3, // Number of retry attempts
+        backoffMs: 300, // Initial retry backoff time
+        maxBackoffMs: 5000, // Maximum retry backoff time
+        headers: {
+            // Custom headers for development
+            "X-Development": "true",
+        },
+    });
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError(null);
@@ -27,27 +42,40 @@ const ChatComponent = () => {
         setLoading(true);
 
         try {
-            const res = await fetch('https://my-app.yangcongzhao123.workers.dev/ai/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    prompt,
-                    systemPrompt: systemPrompt || undefined,
-                    model: 'deepseek-chat',
-                    temperature: 0.7,
-                    max_tokens: 2000,
-                }),
+
+            const agent = client.getAgent("codeReviewAgent");
+            const response = await agent.generate({
+                messages: [
+                    {
+                        role: "user",
+                        content: '1212',
+                    },
+                ],
             });
 
-            const data = await res.json();
+            // const res = await fetch('https://my-app.yangcongzhao123.workers.dev/ai/chat', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify({
+            //         prompt,
+            //         systemPrompt: systemPrompt || undefined,
+            //         model: 'deepseek-chat',
+            //         temperature: 0.7,
+            //         max_tokens: 2000,
+            //     }),
+            // });
+            //
+            // const data = await res.json();
+            //
+            // if (!res.ok) {
+            //     throw new Error(data.error || '请求失败');
+            // }
 
-            if (!res.ok) {
-                throw new Error(data.error || '请求失败');
-            }
-
-            setResponse(data);
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
+            setResponse(response);
         } catch (err) {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-expect-error
@@ -60,7 +88,7 @@ const ChatComponent = () => {
     return (
         <div className="max-w-3xl w-full bg-white rounded-lg p-8 shadow-md mx-auto">
             <h1 className="text-3xl font-bold mb-8 text-center text-gray-900">
-                DeepSeek AI Chat
+                code review
             </h1>
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
@@ -69,7 +97,7 @@ const ChatComponent = () => {
               rows={3}
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              placeholder="请输入您的问题，例如：你好，请介绍一下你自己"
+              placeholder="上传代码"
               required
           />
                 </div>
