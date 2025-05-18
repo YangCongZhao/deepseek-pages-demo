@@ -27,24 +27,15 @@ const ChatComponent = () => {
     // Mastra客户端配置
 
     const client = new MastraClient({
-        // 使用安全的HTTPS连接
         baseUrl: "https://yc-mastra-app.yangcongzhao123.workers.dev",
-
-        // 重试配置
         retries: 3,
         backoffMs: 300,
         maxBackoffMs: 5000,
-
-        // 请求头配置
         headers: {
             'Content-Type': 'application/json',
-            // 删除X-Development: "false"，因为这可能导致CORS预检请求
         },
-
-        // 添加凭证配置，如果后端配置了credentials: true
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        credentials: 'include',
+        // 不要使用include，因为你的后端可能不支持凭证
+        credentials: 'same-origin', // 或者完全不设置这个选项
     });
 
     const handleSubmit = async (e: React.FormEvent) => {
