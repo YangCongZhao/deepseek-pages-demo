@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { MastraClient } from "@mastra/client-js";
+import Markdown from 'react-markdown'
 interface ChatResponse {
     id: string;
     choices: {
@@ -25,6 +26,7 @@ const ChatComponent = () => {
     const client = new MastraClient({
         // Required
         baseUrl: "https://yc-mastra-app.yangcongzhao123.workers.dev",
+        // baseUrl: "http://localhost:4111",
 
         // Optional configurations for development
         retries: 3, // Number of retry attempts
@@ -32,6 +34,7 @@ const ChatComponent = () => {
         maxBackoffMs: 5000, // Maximum retry backoff time
         headers: {
             // Custom headers for development
+            'Content-Type': 'application/json',
             "X-Development": "true",
         },
     });
@@ -42,13 +45,12 @@ const ChatComponent = () => {
         setLoading(true);
 
         try {
-
             const agent = client.getAgent("codeReviewAgent");
             const response = await agent.generate({
                 messages: [
                     {
                         role: "user",
-                        content: '1212',
+                        content: prompt,
                     },
                 ],
             });
@@ -150,7 +152,7 @@ const ChatComponent = () => {
                 <div className="mt-6 p-6 bg-gray-50 rounded-md animate-fadeIn">
                     <div className="space-y-3 text-gray-700">
                         <p>
-                            {response.choices[0].message.content}
+                            <Markdown>{response.text}</Markdown>
                         </p>
 
                     </div>
