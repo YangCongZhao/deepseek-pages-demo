@@ -26,8 +26,8 @@ const ChatComponent = () => {
 
     const client = new MastraClient({
         // Required
-        baseUrl: "https://yc-mastra-app.yangcongzhao123.workers.dev",
-        //baseUrl: "http://localhost:4111",
+       baseUrl: "https://yc-mastra-app.yangcongzhao123.workers.dev",
+        // baseUrl: "http://localhost:4111",
 
         // Optional configurations for development
         retries: 3, // Number of retry attempts
@@ -35,6 +35,7 @@ const ChatComponent = () => {
         maxBackoffMs: 5000, // Maximum retry backoff time
         headers: {
             // Custom headers for development
+            'Content-Type': 'application/json',
             // "X-Development": "true",
         },
     });
