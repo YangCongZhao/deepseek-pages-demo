@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { MastraClient } from "@mastra/client-js";
 import Markdown from 'react-markdown'
 interface ChatResponse {
+    text: string | null | undefined;
     id: string;
     choices: {
         message: {
