@@ -28,9 +28,16 @@ const ChatComponent = () => {
         // Required
        baseUrl: "https://yc-mastra-app.yangcongzhao123.workers.dev",
         // baseUrl: "http://localhost:4111",
+
+        // Optional configurations for development
         retries: 3, // Number of retry attempts
         backoffMs: 300, // Initial retry backoff time
         maxBackoffMs: 5000, // Maximum retry backoff time
+        headers: {
+            // Custom headers for development
+            'Content-Type': 'application/json',
+            "X-Development": "false",
+        },
     });
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
