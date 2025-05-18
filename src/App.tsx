@@ -34,8 +34,7 @@ const ChatComponent = () => {
         headers: {
             'Content-Type': 'application/json',
         },
-        // 不要使用include，因为你的后端可能不支持凭证
-        credentials: 'same-origin', // 或者完全不设置这个选项
+
     });
 
     const handleSubmit = async (e: React.FormEvent) => {
