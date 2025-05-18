@@ -35,8 +35,7 @@ const ChatComponent = () => {
         maxBackoffMs: 5000, // Maximum retry backoff time
         headers: {
             // Custom headers for development
-            'Content-Type': 'application/json',
-            "X-Development": "true",
+            // "X-Development": "true",
         },
     });
     const handleSubmit = async (e: React.FormEvent) => {
