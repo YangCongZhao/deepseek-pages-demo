@@ -27,7 +27,7 @@ const ChatComponent = () => {
     // Mastra客户端配置
 
     const client = new MastraClient({
-        baseUrl: "https://yc-mastra-app.yangcongzhao123.workers.dev",
+        baseUrl: "https://yc-mastra-app-production.yangcongzhao123.workers.dev",
         retries: 3,
         backoffMs: 300,
         maxBackoffMs: 5000,
