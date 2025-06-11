@@ -1,6 +1,5 @@
-
-import  {createRoot} from 'react-dom/client'
 import { useState } from 'react';
+import  {createRoot} from 'react-dom/client'
 import { MastraClient } from "@mastra/client-js";
 import Markdown from 'react-markdown'
 import './index.css'
@@ -55,9 +54,11 @@ const App = () => {
             });
 
             // 设置响应
+            // @ts-ignore
             setResponse(response);
         } catch (err) {
             console.error("API请求失败:", err);
+            // @ts-ignore
             setError((err as Error).message || "请求失败，请稍后再试");
         } finally {
             setLoading(false);
@@ -137,6 +138,7 @@ const App = () => {
     )
 }
 const container = document.getElementById('app');
+// @ts-ignore
 const root = createRoot(container);
 root.render(<App />)
 

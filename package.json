@@ -16,6 +16,7 @@
     "@mastra/client-js": "^0.10.3",
     "@swc/core": "^1.11.31",
     "@tailwindcss/postcss": "^4.1.8",
+    "@types/react": "^19.1.7",
     "@types/react-dom": "^19.1.6",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^7.1.2",
