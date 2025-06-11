@@ -4,6 +4,7 @@ const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack');
 module.exports = {
+
     output: {
         path: join(__dirname,'../dist'),
         publicPath: '/',

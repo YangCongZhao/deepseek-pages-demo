@@ -6,6 +6,7 @@ const { resolve } = require('path');
 const _mergeConfig = require(`./config/webpack.${_mode}.js`);
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const webpack = require('webpack');
 const webpackBaseConfig = {
     entry:{
         main:resolve('src/index.tsx')
@@ -48,6 +49,9 @@ const webpackBaseConfig = {
             chunkFilename: _modeflag ? 'styles/[name].[contenthash:5].css' : 'styles/[name].css',
             ignoreOrder: false,
         }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(_mode)
+        })
 
         /*
              hash index.r456hgghh.js    整个网站尾缀都用一个
