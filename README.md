@@ -1,2 +1,0 @@
-# hp-shoping
-hp-shoping
