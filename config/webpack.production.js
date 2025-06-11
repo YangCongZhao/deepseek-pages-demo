@@ -2,7 +2,7 @@ const {join,resolve} = require('path');
 const  TerserWebpackPlugin = require('terser-webpack-plugin')
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
 const htmlWebpackPlugin = require('html-webpack-plugin')
-
+const webpack = require('webpack');
 module.exports = {
     output: {
         path: join(__dirname,'../dist'),
@@ -35,6 +35,9 @@ module.exports = {
             filename: "index.html",
             template: resolve(__dirname,'../src/index-prod.html'),
             favicon: "./public/favicon.ico"
+        }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('production')
         })
     ]
 }
